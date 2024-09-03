@@ -1,7 +1,8 @@
-package com.example.A2.Controller;
+package com.example.A2;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Component;
+import java.util.Set;
 
 import com.example.A2.Components.Poll;
 import com.example.A2.Components.User;
@@ -31,4 +32,28 @@ public class PollManager {
         polls.put(user, poll);
     }
 
+    public Set<User> getUsers() {
+        return polls.keySet();
+    }
+
+    public User getUser(String username) {
+        for (User user : polls.keySet()) {
+            if (user.getName().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public void addUser(User user) {
+        polls.put(user, null);
+    }
+
+    public void deleteUser(User user) {
+        polls.remove(user);
+    }
+
+    public void updateUser(User user) {
+        polls.put(user, polls.get(user));
+    }
 }
