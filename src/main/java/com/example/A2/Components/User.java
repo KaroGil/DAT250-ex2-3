@@ -1,6 +1,6 @@
 package com.example.A2.Components;
 
-public class User {
+public class User implements java.io.Serializable {
     
     private String username;
     private String email;

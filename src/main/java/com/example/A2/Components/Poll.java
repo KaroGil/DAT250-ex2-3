@@ -2,7 +2,7 @@ package com.example.A2.Components;
 import java.time.Instant;
 
 
-public class Poll {
+public class Poll implements java.io.Serializable {
     
     private String question;
     private Instant publishAt;
