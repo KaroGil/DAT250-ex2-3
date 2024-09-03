@@ -1,0 +1,72 @@
+//Create a new user
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "username": "testUser",
+  "email": "testUser@example.com"
+}
+
+
+//List all users (-> shows the newly created user)
+GET http://localhost:8080/api/users
+
+
+//Create another user
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "username": "testUser2",
+  "email": "testUser2@example.com"
+}
+
+
+//List all users again (-> shows two users)
+GET http://localhost:8080/api/users
+
+
+//User 1 creates a new poll
+POST http://localhost:8080/api/polls
+Content-Type: application/json
+
+{
+  "question": "What's your favorite programming language?",
+  "publishedAt": "2024-09-01T12:00:00Z",
+  "validUntil": "2024-09-10T12:00:00Z",
+  "username": "testUser" // here it will actually be different sine poll.java doesnt have a username field, rather the users and their polls are kept in a hashmap 
+}
+
+//List polls (-> shows the new poll)
+GET http://localhost:8080/api/polls
+
+
+//User 2 votes on the poll
+POST http://localhost:8080/api/votes
+Content-Type: application/json
+
+{
+  "username": "user2",
+  "pollId": "1",   // Assuming the poll ID is 1
+  "optionId": "1"  // Assuming the option ID is 1 for "Java"
+}
+
+//User 2 changes his vote
+PUT http://localhost:8080/api/votes/1 
+Content-Type: application/json
+
+{
+  "optionId": "2"  // Change the vote to option ID 2 for "Python"
+}
+
+
+//List votes (-> shows the most recent vote for User 2)
+GET http://localhost:8080/api/votes
+
+
+//Delete the one poll -> Assuming the poll ID is 1
+DELETE http://localhost:8080/api/polls/1  
+
+
+//List votes (-> empty)
+GET http://localhost:8080/api/votes
