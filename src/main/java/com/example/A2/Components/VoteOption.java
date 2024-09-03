@@ -1,6 +1,6 @@
-package com.example.A2.Voting;
+package com.example.A2.Components;
 
-public class VoteOption {
+public class VoteOption implements java.io.Serializable {
     
     private String caption;
     private int presentationOrder;

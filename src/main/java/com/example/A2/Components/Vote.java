@@ -1,8 +1,9 @@
-package com.example.A2.Voting;
+package com.example.A2.Components;
 import java.time.Instant;
 
-public class Vote {
+public class Vote implements java.io.Serializable {
     
+    private User user;
     private Instant publishAt;
 
     public Vote() {

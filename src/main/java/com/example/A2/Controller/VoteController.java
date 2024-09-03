@@ -11,53 +11,41 @@ import java.util.Set;
 
 import com.example.A2.PollManager;
 import com.example.A2.Components.User;
+import com.example.A2.Components.Vote;
 
 @RestController
-@RequestMapping("/api/users")
-public class UserController {
+@RequestMapping("/api/vote")
+public class VoteController {
     
     private final PollManager pollManager;
 
-    public UserController(PollManager pollManager) {
+    public VoteController(PollManager pollManager) {
         this.pollManager = pollManager;
     }
 
     @GetMapping
-    public Set<User> getUsers() {
-        return pollManager.getUsers();
+    public Set<User> getVotes() {
+        return pollManager.getVotes();
     }
 
     @PostMapping
-    public  void createUser(User user) {
-        pollManager.addUser(user);
+    public  void createVote(Vote v) {
+        pollManager.addVote(v);
     }
 
-    @GetMapping("/{username}")
-    public User getUser(@PathVariable String username) {
-        return pollManager.getUser(username);
-    }
-
-    @DeleteMapping("/{username}")
-    public void deleteUser(@PathVariable String username) {
-        pollManager.deleteUser(pollManager.getUser(username));
+    @DeleteMapping("/{vote}")
+    public void deleteVote(@PathVariable String vote) {
+        pollManager.deleteVote(vote);
     }
 
     @PutMapping("/{username}")
-    public void updateUser(@PathVariable String username, String newName, String newEmail, String newPassword) {
+    public void updateVote(@PathVariable String username, Vote newVote) {
         User existingUser = pollManager.getUser(username);
         if (existingUser != null) {
-            existingUser.setName(newName);
-            existingUser.setEmail(newEmail);
-
-            pollManager.updateUser(existingUser);
+            pollManager.updateVote(existingUser, newVote);
         }
         else {
             // If the user does not exist, create a new user
-            pollManager.addUser(new User(newName, newEmail, newPassword));
+            pollManager.addUser(new User());
         }
-
-    }
-
-
-
 }

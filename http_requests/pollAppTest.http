@@ -4,7 +4,8 @@ Content-Type: application/json
 
 {
   "username": "testUser",
-  "email": "testUser@example.com"
+  "email": "testUser@example.com",
+  "password": "testPassword"
 }
 
 
@@ -18,7 +19,8 @@ Content-Type: application/json
 
 {
   "username": "testUser2",
-  "email": "testUser2@example.com"
+  "email": "testUser2@example.com",
+  "password": "testPassword2"
 }
 
 
@@ -34,7 +36,15 @@ Content-Type: application/json
   "question": "What's your favorite programming language?",
   "publishedAt": "2024-09-01T12:00:00Z",
   "validUntil": "2024-09-10T12:00:00Z",
-  "username": "testUser" // here it will actually be different sine poll.java doesnt have a username field, rather the users and their polls are kept in a hashmap 
+  "options": [
+    {
+      "title": "Java"
+    },
+    {
+      "title": "Python"
+    }
+  ],
+  "state": "PUBLIC",
 }
 
 //List polls (-> shows the new poll)
@@ -48,7 +58,7 @@ Content-Type: application/json
 {
   "username": "user2",
   "pollId": "1",   // Assuming the poll ID is 1
-  "optionId": "1"  // Assuming the option ID is 1 for "Java"
+  "optionId": "0"  // Assuming the option ID is 0 for "Java"
 }
 
 //User 2 changes his vote
@@ -56,7 +66,7 @@ PUT http://localhost:8080/api/votes/1
 Content-Type: application/json
 
 {
-  "optionId": "2"  // Change the vote to option ID 2 for "Python"
+  "optionId": "1"  // Change the vote to option ID 1 for "Python"
 }
 
 
