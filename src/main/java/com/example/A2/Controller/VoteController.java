@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Set;
+import java.time.Instant;
 
 import com.example.A2.PollManager;
 import com.example.A2.Components.User;
@@ -23,29 +24,30 @@ public class VoteController {
         this.pollManager = pollManager;
     }
 
-    @GetMapping
-    public Set<User> getVotes() {
-        return pollManager.getVotes();
-    }
+    // @GetMapping
+    // public Set<User> getVotes() {
+    //     return pollManager.getVotes();
+    // }
 
-    @PostMapping
-    public  void createVote(Vote v) {
-        pollManager.addVote(v);
-    }
+    // @PostMapping
+    // public  void createVote(User u) {
+    //     Vote newVote = new Vote(u, Instant.now());
+    //     pollManager.addVote(newVote);
+    // }
 
-    @DeleteMapping("/{vote}")
-    public void deleteVote(@PathVariable String vote) {
-        pollManager.deleteVote(vote);
-    }
+//     @DeleteMapping("/{vote}")
+//     public void deleteVote(@PathVariable String vote) {
+//         pollManager.deleteVote(vote);
+//     }
 
-    @PutMapping("/{username}")
-    public void updateVote(@PathVariable String username, Vote newVote) {
-        User existingUser = pollManager.getUser(username);
-        if (existingUser != null) {
-            pollManager.updateVote(existingUser, newVote);
-        }
-        else {
-            // If the user does not exist, create a new user
-            pollManager.addUser(new User());
-        }
+//     @PutMapping("/{username}")
+//     public void updateVote(@PathVariable String username, Vote newVote) {
+//         User existingUser = pollManager.getUser(username);
+//         if (existingUser != null) {
+//             pollManager.updateVote(existingUser, newVote);
+//         }
+//         else {
+//             throw new IllegalArgumentException("User does not exist");
+//         }
+// }
 }

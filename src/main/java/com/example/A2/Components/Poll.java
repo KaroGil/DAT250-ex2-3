@@ -12,15 +12,16 @@ public class Poll implements java.io.Serializable {
     private String question;
     private Instant publishAt;
     private Instant validUntil;
-    private String[] options;
+    private VoteOption[] options;
     private UUID id;
     private Visibility state = Visibility.PRIVATE;
     
-    public Poll(String question, Instant publishAt, Instant validUntil, String[] options) {
+    public Poll(String question, Instant publishAt, Instant validUntil, VoteOption[] options, Visibility state) {
         this.question = question;
         this.publishAt = publishAt;
         this.validUntil = validUntil;
         this.options = options;
+        this.state = state;
     }
 
     public UUID getId() {
@@ -55,11 +56,19 @@ public class Poll implements java.io.Serializable {
         this.validUntil = validUntil;
     }
 
-    public String[] getOptions() {
+    public VoteOption[] getOptions() {
         return options;
     }
 
-    public void setOptions(String[] options) {
+    public void setOptions(VoteOption[] options) {
         this.options = options;
+    }
+
+    public Visibility getState() {
+        return state;
+    }
+
+    public void setState(Visibility state) {
+        this.state = state;
     }
 }
