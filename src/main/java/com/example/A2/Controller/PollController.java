@@ -47,12 +47,12 @@ public class PollController {
     }
 
     @DeleteMapping("/{user}")
-    public void deleteAllPolls(@PathVariable User user) {
+    public void deleteAllPolls(@PathVariable String user) {
         pollManager.removeAllPolls(user);
     }
 
     @DeleteMapping("/{user}/{poll}")
-    public void deletePoll(@PathVariable User user, @PathVariable Poll poll) {
+    public void deletePoll(@PathVariable String user, @PathVariable Poll poll) {
         pollManager.removePoll(user, poll);
     }
 }
