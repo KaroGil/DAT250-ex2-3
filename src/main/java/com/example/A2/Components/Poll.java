@@ -1,23 +1,24 @@
 package com.example.A2.Components;
 import java.time.Instant;
 import java.util.UUID;
+import java.util.ArrayList;
 
 public class Poll implements java.io.Serializable {
     
     private String question;
     private Instant publishAt;
     private Instant validUntil;
-    private VoteOption[] options;
+    private ArrayList<VoteOption> options;
     private UUID id;
-    private Visibility state = Visibility.PRIVATE;
+    private boolean isPublic;
     
-    public Poll(String question, Instant publishAt, Instant validUntil, VoteOption[] options, Visibility state) {
+    public Poll(String question, Instant publishAt, Instant validUntil, ArrayList<VoteOption> options, boolean isPublic) {
         this.id = UUID.randomUUID();
         this.question = question;
         this.publishAt = publishAt;
         this.validUntil = validUntil;
         this.options = options;
-        this.state = state;
+        this.isPublic = isPublic;
     }
 
     public UUID getId() {
@@ -52,19 +53,19 @@ public class Poll implements java.io.Serializable {
         this.validUntil = validUntil;
     }
 
-    public VoteOption[] getOptions() {
+    public ArrayList<VoteOption> getOptions() {
         return options;
     }
 
-    public void setOptions(VoteOption[] options) {
+    public void setOptions(ArrayList<VoteOption> options) {
         this.options = options;
     }
 
-    public Visibility getState() {
-        return state;
+    public Boolean getState() {
+        return isPublic;
     }
 
-    public void setState(Visibility state) {
-        this.state = state;
+    public void setState(boolean isPublic) {
+        this.isPublic = isPublic;
     }
 }

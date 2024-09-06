@@ -28,7 +28,7 @@ public class UserController {
 
     @GetMapping
     public Set<User> getUsers() {
-        logger.info("PollManager created");
+        logger.info("getting users");
         return pollManager.getUsers();
     }
 

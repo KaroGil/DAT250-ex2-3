@@ -23,6 +23,18 @@ public class PollManager {
 
     public PollManager() {
     }
+
+    // Helper methods
+    //Find a user by username
+    public User findUser(String username) {
+        for (User user : polls.keySet()) {
+            if (user.getName().equals(username)) {
+                return user;
+            }
+        }
+        throw new IllegalArgumentException("User not found");
+    }
+
     
     // POLL METHODS
     public void addPoll(String username, Poll poll) {
@@ -51,8 +63,12 @@ public class PollManager {
         polls.remove(user, poll);
     }
 
-    public void updatePoll(User user, Poll poll) {
-        polls.put(user, poll);
+    public void updatePoll(String username, Poll poll) {
+        for (User user : polls.keySet()) {
+            if (user.getName().equals(username)) {
+                polls.put(user, poll);
+            }
+        }
     }
 
     // USER METHODS

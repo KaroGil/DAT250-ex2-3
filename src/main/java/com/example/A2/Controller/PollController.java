@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.A2.PollManager;
 import com.example.A2.Components.Poll;
 import com.example.A2.Components.User;
-import java.util.Collection;
 
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/api/polls")
@@ -42,7 +42,7 @@ public class PollController {
     }
 
     @PutMapping("/{user}")
-    public void updatePoll(@PathVariable User user, @RequestBody Poll poll) {
+    public void updatePoll(@PathVariable String user, @RequestBody Poll poll) {
         pollManager.updatePoll(user, poll);
     }
 
