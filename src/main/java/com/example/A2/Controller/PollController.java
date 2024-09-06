@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.A2.PollManager;
 import com.example.A2.Components.Poll;
 import com.example.A2.Components.User;
-
+import java.util.UUID;
 import java.util.Collection;
 
 @RestController
@@ -30,29 +30,29 @@ public class PollController {
         return pollManager.getAllPolls();
     }
 
-    @PostMapping("/{user}")
-    public void createPoll(@PathVariable String user, @RequestBody Poll poll) {
-        pollManager.addPoll(user, poll);
+    @PostMapping
+    public void createPoll(@RequestBody Poll poll) {
+        pollManager.addPoll(poll);
     }
 
 
-    @GetMapping("/{user}")
-    public Poll getPoll(@PathVariable String user) {
-        return pollManager.getPoll(user);
+    @GetMapping("/{pollId}")
+    public Poll getPoll(@PathVariable UUID pollId) {
+        return pollManager.getPoll(pollId);
     }
 
-    @PutMapping("/{user}")
-    public void updatePoll(@PathVariable String user, @RequestBody Poll poll) {
-        pollManager.updatePoll(user, poll);
+    @PutMapping("/{pollId}")
+    public void updatePoll(@PathVariable UUID pollId, @RequestBody Poll poll) {
+        pollManager.updatePoll(pollId, poll);
     }
 
-    @DeleteMapping("/{user}")
-    public void deleteAllPolls(@PathVariable String user) {
-        pollManager.removeAllPolls(user);
+    @DeleteMapping
+    public void deleteAllPolls() {
+        pollManager.removeAllPolls();
     }
 
-    @DeleteMapping("/{user}/{poll}")
-    public void deletePoll(@PathVariable String user, @PathVariable Poll poll) {
-        pollManager.removePoll(user, poll);
+    @DeleteMapping("/{pollId}")
+    public void deletePoll(@PathVariable UUID pollId) {
+        pollManager.removePoll(pollId);
     }
 }

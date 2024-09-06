@@ -14,6 +14,8 @@ import java.util.Set;
 
 import com.example.A2.PollManager;
 import com.example.A2.Components.User;
+import java.util.Collection;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
@@ -27,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping
-    public Set<User> getUsers() {
+    public Collection<User> getUsers() {
         logger.info("getting users");
         return pollManager.getUsers();
     }
@@ -38,18 +40,18 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public User getUser(@PathVariable String username) {
-        return pollManager.getUser(username);
+    public User getUser(@PathVariable UUID userId) {
+        return pollManager.getUser(userId);
     }
 
     @DeleteMapping("/{username}")
-    public void deleteUser(@PathVariable String username) {
-        pollManager.deleteUser(pollManager.getUser(username));
+    public void deleteUser(@PathVariable UUID userId) {
+        pollManager.deleteUser(userId);
     }
 
     @PutMapping("/{username}")
-    public void updateUser(@PathVariable String username, @RequestBody User newUser) {
-        User existingUser = pollManager.getUser(username);
+    public void updateUser(@PathVariable UUID userId, @RequestBody User newUser) {
+        User existingUser = pollManager.getUser(userId);
 
         if (existingUser != null) {
             logger.info("User exists, updating user");
@@ -57,7 +59,7 @@ public class UserController {
             existingUser.setEmail(newUser.getEmail());
             existingUser.setPassword(newUser.getPassword());
 
-            pollManager.updateUser(existingUser);
+            pollManager.updateUser(userId, existingUser);
         }
         else {
             // If the user does not exist, create a new user

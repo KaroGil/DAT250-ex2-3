@@ -2,41 +2,46 @@ package com.example.A2.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import com.example.A2.PollManager;
+import com.example.A2.Components.Vote;
+import java.util.Collection;
+import java.util.UUID;
+import java.time.Instant;
 
 @RestController
 @RequestMapping("/api/vote")
 public class VoteController {
     
-    // private final PollManager pollManager;
+    private final PollManager pollManager;
 
-    // public VoteController(PollManager pollManager) {
-    //     this.pollManager = pollManager;
-    // }
+    public VoteController(PollManager pollManager) {
+        this.pollManager = pollManager;
+    }
 
-    // @GetMapping
-    // public Set<User> getVotes() {
-    //     return pollManager.getVotes();
-    // }
+    @GetMapping
+    public Collection<Vote> getVotes() {
+        return pollManager.getAllVotes();
+    }
 
-    // @PostMapping
-    // public  void createVote(User u) {
-    //     Vote newVote = new Vote(u, Instant.now());
-    //     pollManager.addVote(newVote);
-    // }
+    @PostMapping
+    public void createVote(@RequestBody Vote vote) {
+        Vote newVote = new Vote(vote.getUser());
+        pollManager.addVote(newVote);
+    }
 
-//     @DeleteMapping("/{vote}")
-//     public void deleteVote(@PathVariable String vote) {
-//         pollManager.deleteVote(vote);
-//     }
+    @DeleteMapping("/{voteId}")
+    public void deleteVote(@PathVariable UUID voteId) {
+        pollManager.removeVote(voteId);
+    }
 
-//     @PutMapping("/{username}")
-//     public void updateVote(@PathVariable String username, Vote newVote) {
-//         User existingUser = pollManager.getUser(username);
-//         if (existingUser != null) {
-//             pollManager.updateVote(existingUser, newVote);
-//         }
-//         else {
-//             throw new IllegalArgumentException("User does not exist");
-//         }
-// }
+    @PutMapping("/{voteId}")
+    public void updateVote(@PathVariable UUID voteId, @RequestBody Vote newVote) {
+            pollManager.updateVote(voteId, newVote);
+}
 }

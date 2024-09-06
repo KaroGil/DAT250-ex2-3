@@ -1,14 +1,21 @@
 package com.example.A2.Components;
 import java.time.Instant;
+import java.util.UUID;
 
 public class Vote implements java.io.Serializable {
     
-    private User user;
+    private UUID votedBy;
     private Instant publishAt;
+    private UUID id;
 
-    public Vote(User user, Instant publishAt) {
-        this.user = user;
-        this.publishAt = publishAt;
+    public Vote(UUID votedBy) {
+        this.id = UUID.randomUUID();
+        this.votedBy = votedBy;
+        this.publishAt = Instant.now();
+    }
+
+    public UUID getId() {
+        return id;
     }
 
     public Instant getPublishAt() {
@@ -19,11 +26,11 @@ public class Vote implements java.io.Serializable {
         this.publishAt = publishAt;
     }
 
-    public User getUser() {
-        return user;
+    public UUID getUser() {
+        return votedBy;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(UUID votedBy) {
+        this.votedBy = votedBy;
     }
 }
