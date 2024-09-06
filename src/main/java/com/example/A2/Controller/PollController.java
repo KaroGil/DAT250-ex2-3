@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.A2.PollManager;
 import com.example.A2.Components.Poll;
 import com.example.A2.Components.User;
+import java.util.Collection;
 
 
 @RestController
@@ -23,14 +24,20 @@ public class PollController {
     public PollController(PollManager pollManager) {
         this.pollManager = pollManager;
     }
+    
+    @GetMapping
+    public Collection<Poll> getAllPolls() {
+        return pollManager.getAllPolls();
+    }
 
     @PostMapping("/{user}")
-    public void createPoll(@PathVariable User user, @RequestBody Poll poll) {
+    public void createPoll(@PathVariable String user, @RequestBody Poll poll) {
         pollManager.addPoll(user, poll);
     }
 
+
     @GetMapping("/{user}")
-    public Poll getPoll(@PathVariable User user) {
+    public Poll getPoll(@PathVariable String user) {
         return pollManager.getPoll(user);
     }
 

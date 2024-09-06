@@ -2,11 +2,6 @@ package com.example.A2.Components;
 import java.time.Instant;
 import java.util.UUID;
 
-enum Visibility {
-    PUBLIC,
-    PRIVATE
-}
-
 public class Poll implements java.io.Serializable {
     
     private String question;
@@ -17,6 +12,7 @@ public class Poll implements java.io.Serializable {
     private Visibility state = Visibility.PRIVATE;
     
     public Poll(String question, Instant publishAt, Instant validUntil, VoteOption[] options, Visibility state) {
+        this.id = UUID.randomUUID();
         this.question = question;
         this.publishAt = publishAt;
         this.validUntil = validUntil;
