@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.A2.PollManager;
 import com.example.A2.Components.Poll;
-import com.example.A2.Components.User;
 import java.util.UUID;
 import java.util.Collection;
 

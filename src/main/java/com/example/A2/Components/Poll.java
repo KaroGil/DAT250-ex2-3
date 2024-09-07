@@ -13,13 +13,14 @@ public class Poll implements java.io.Serializable {
     private boolean isPublic;
     private UUID creatorUserId;
     
-    public Poll(String question, Instant publishAt, Instant validUntil, ArrayList<VoteOption> options, boolean isPublic) {
+    public Poll(String question, Instant publishAt, Instant validUntil, ArrayList<VoteOption> options, boolean isPublic, UUID creatorUserId) {
         this.id = UUID.randomUUID();
         this.question = question;
         this.publishAt = publishAt;
         this.validUntil = validUntil;
         this.options = options;
         this.isPublic = isPublic;
+        this.creatorUserId = creatorUserId;
     }
 
     public UUID getId() {
@@ -28,6 +29,10 @@ public class Poll implements java.io.Serializable {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public UUID getCreatorUserId() {
+        return creatorUserId;
     }
 
     public String getQuestion() {

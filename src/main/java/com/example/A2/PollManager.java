@@ -101,9 +101,21 @@ public class PollManager {
         votes.remove(voteId);
     }
 
-    public void updateVote(UUID voteId, Vote vote) {
-        logger.info("Updating vote: " + voteId + " with " + vote);
-        votes.put(voteId, vote);
+    public void updateVote(UUID voteId, Vote newVote) {
+        logger.info("Updating vote: " + voteId + " with " + newVote);
+        Vote existingVote = votes.get(voteId);
+        if (existingVote != null) {
+            logger.info("Updating vote: " + voteId + " with new voteOptionId: " + newVote.getVoteOptionId());
+    
+            // Only update the voteOptionId, keep the other fields unchanged
+            existingVote.setVoteOptionId(newVote.getVoteOptionId());
+    
+            // Save the updated vote
+            votes.put(voteId, existingVote);
+        } else {
+            logger.info("Vote not found: " + voteId);
+            throw new IllegalArgumentException("Vote not found with id: " + voteId);
+        }
     }
 
     // VOTE OPTION METHODS
@@ -127,29 +139,8 @@ public class PollManager {
         voteOptions.remove(voteOptionId);
     }
 
-    public void updateVote(UUID voteOptionId, VoteOption voteOption) {
+    public void updateVoteOption(UUID voteOptionId, VoteOption voteOption) {
         voteOptions.put(voteOptionId, voteOption);
     }
-    // // VOTE METHODS
-    // public Set<User> getVotes() {
-    //     return votes.keySet();
-    // }
-
-    // public void addVote(User user, Vote vote) {
-    //     votes.put(user, vote);
-    // }
-
-    // public void deleteVote(String vote) {
-    //     for (User user : polls.keySet()) {
-    //         if (user.getName().equals(vote)) {
-    //             polls.remove(user);
-    //         }
-    //     }
-    // }
-
-    // public void updateVote(User user, Vote vote) {
-    //     votes.put(user, vote);
-    // }
-
 
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.Set;
 
 import com.example.A2.PollManager;
 import com.example.A2.Components.User;
@@ -39,36 +38,20 @@ public class UserController {
         pollManager.addUser(user);
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/{userId}")
     public User getUser(@PathVariable UUID userId) {
         return pollManager.getUser(userId);
     }
 
-    @DeleteMapping("/{username}")
+    @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable UUID userId) {
         pollManager.deleteUser(userId);
     }
 
-    @PutMapping("/{username}")
-    public void updateUser(@PathVariable UUID userId, @RequestBody User newUser) {
-        User existingUser = pollManager.getUser(userId);
-
-        if (existingUser != null) {
-            logger.info("User exists, updating user");
-            existingUser.setName(newUser.getName());
-            existingUser.setEmail(newUser.getEmail());
-            existingUser.setPassword(newUser.getPassword());
-
-            pollManager.updateUser(userId, existingUser);
-        }
-        else {
-            // If the user does not exist, create a new user
-            logger.info("User does not exist, creating new user");
-            pollManager.addUser(newUser);
-        }
-
+    @PutMapping("/{userId}")
+    public void updateUser(@PathVariable UUID userId, @RequestBody User newUser) {    
+        logger.info("updating user");
+        pollManager.updateUser(userId, newUser);
+        logger.info("user updated");
     }
-
-
-
 }

@@ -31,7 +31,7 @@ public class VoteController {
 
     @PostMapping
     public void createVote(@RequestBody Vote vote) {
-        Vote newVote = new Vote(vote.getUser());
+        Vote newVote = new Vote(vote.getVotedBy(), vote.getVoteOptionId());
         pollManager.addVote(newVote);
     }
 

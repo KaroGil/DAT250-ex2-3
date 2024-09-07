@@ -4,7 +4,6 @@ public class VoteOption implements java.io.Serializable {
     
     private String caption;
     private int presentationOrder;
-    private Vote[] votes;
     private UUID id;
 
     public VoteOption(String caption, int presentationOrder) {
@@ -31,14 +30,6 @@ public class VoteOption implements java.io.Serializable {
 
     public void setPresentationOrder(int presentationOrder) {
         this.presentationOrder = presentationOrder;
-    }
-
-    public Vote[] getVotes() {
-        return votes;
-    }
-
-    public void setVotes(Vote[] votes) {
-        this.votes = votes;
     }
 
 }
