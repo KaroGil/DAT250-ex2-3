@@ -22,7 +22,7 @@ public class PollManager {
     HashMap<UUID, Poll> polls = new HashMap<UUID, Poll>();
     HashMap<UUID, User> users = new HashMap<UUID, User>();
     HashMap<UUID, Vote> votes = new HashMap<UUID, Vote>();
-    HashMap<UUID, VoteOption> voteOptions = new HashMap<UUID, VoteOption>();
+    HashMap<UUID, VoteOption> voteOptions = new HashMap<UUID, VoteOption>(); // Do I use this? Or is it saved in a poll...
 
     public PollManager() {
     }
@@ -47,6 +47,11 @@ public class PollManager {
 
     public void removePoll(UUID pollId) {
         polls.remove(pollId);
+
+        //Removes all votes associated with this poll
+        votes.values().removeIf(vote -> (vote.getPollId()).equals(pollId));
+        //Removes all voteOptions associated with this poll?
+        //voteOptions.values().removeIf(voteOption -> (voteOption.getPollId()).equals(pollId));
     }
 
     public void updatePoll(UUID pollId, Poll poll) {
@@ -118,7 +123,7 @@ public class PollManager {
         }
     }
 
-    // VOTE OPTION METHODS
+    // VOTE OPTION METHODS -> Do I use these?
     public void addVoteOptions(VoteOption voteOption) {
         voteOptions.put(voteOption.getId(), voteOption);
     }

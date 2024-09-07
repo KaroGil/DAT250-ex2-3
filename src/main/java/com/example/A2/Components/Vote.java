@@ -8,11 +8,13 @@ public class Vote implements java.io.Serializable {
     private Instant publishAt;
     private UUID id;
     private UUID voteOptionId;
+    private UUID pollId;
 
-    public Vote(UUID votedBy, UUID voteOptionId) {
+    public Vote(UUID votedBy, UUID voteOptionId, UUID pollId) {
         this.id = UUID.randomUUID();
         this.votedBy = votedBy;
         this.voteOptionId = voteOptionId;
+        this.pollId = pollId;
         this.publishAt = Instant.now();
     }
     public Vote() {
@@ -44,5 +46,13 @@ public class Vote implements java.io.Serializable {
 
     public void setVoteOptionId(UUID voteOptionId) {
         this.voteOptionId = voteOptionId;
+    }
+
+    public UUID getPollId() {
+        return pollId;
+    }
+
+    public void setPollId(UUID pollId) {
+        this.pollId = pollId;
     }
 }

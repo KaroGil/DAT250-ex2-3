@@ -12,7 +12,6 @@ import com.example.A2.PollManager;
 import com.example.A2.Components.Vote;
 import java.util.Collection;
 import java.util.UUID;
-import java.time.Instant;
 
 @RestController
 @RequestMapping("/api/vote")
@@ -31,7 +30,7 @@ public class VoteController {
 
     @PostMapping
     public void createVote(@RequestBody Vote vote) {
-        Vote newVote = new Vote(vote.getVotedBy(), vote.getVoteOptionId());
+        Vote newVote = new Vote(vote.getVotedBy(), vote.getVoteOptionId(), vote.getPollId());
         pollManager.addVote(newVote);
     }
 
