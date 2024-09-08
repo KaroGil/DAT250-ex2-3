@@ -5,3 +5,7 @@ I initially wanted to use IntelliJ as my IDE but ran into some issues when tryin
 
 ## Any pending issues with this assignment that you did not manage to solve
 To my knowledge, no major issues are still pending as far as the MVP for this task goes. But there are always new ways to improve and broaden the application with new features or extensions of old features.
+
+
+## Link to src repository with code
+https://github.com/KaroGil/DAT250/tree/assignment2/src
