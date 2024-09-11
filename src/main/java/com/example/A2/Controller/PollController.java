@@ -1,5 +1,6 @@
 package com.example.A2.Controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import java.util.UUID;
 import java.util.Collection;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/polls")
 public class PollController {
     

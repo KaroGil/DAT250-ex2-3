@@ -80,6 +80,14 @@ public class PollManager {
         users.put(userId, user);
     }
 
+    public User login(String username, String password) {
+        for (User user : users.values()) {
+            if (user.getName().equals(username) && user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
 
     // VOTE METHODS
     public void addVote(Vote vote) {

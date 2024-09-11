@@ -2,6 +2,7 @@ package com.example.A2.Controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/users")
 public class UserController {
     
@@ -35,7 +37,9 @@ public class UserController {
 
     @PostMapping
     public  void createUser(@RequestBody User user) {
+        logger.info("creating user");
         pollManager.addUser(user);
+        logger.info("user created");
     }
 
     @GetMapping("/{userId}")
@@ -53,5 +57,15 @@ public class UserController {
         logger.info("updating user");
         pollManager.updateUser(userId, newUser);
         logger.info("user updated");
+    }
+
+    @PostMapping("/login")
+    public User login(@RequestBody User user) {
+        logger.info("user gotten for login: " + user.getName() + ", password: " + user.getPassword());
+        logger.info("logging in " + user.getName());
+        User userFound = pollManager.login(user.getName(), user.getPassword());
+        logger.info("user found: " + userFound.getName());
+
+        return userFound;
     }
 }

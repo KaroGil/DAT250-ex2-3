@@ -16,7 +16,7 @@ public class Poll implements java.io.Serializable {
     public Poll(String question, Instant publishAt, Instant validUntil, ArrayList<VoteOption> options, boolean isPublic, UUID creatorUserId) {
         this.id = UUID.randomUUID();
         this.question = question;
-        this.publishAt = publishAt;
+        this.publishAt = Instant.now();
         this.validUntil = validUntil;
         this.options = options;
         this.isPublic = isPublic;
